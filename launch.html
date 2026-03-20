@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Launch My SMART App</title>
+        <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+    </head>
+    <body>
+        <script>
+            // This page is ONLY called by the EHR or sandbox.
+            // It immediately starts the authorization flow.
+            FHIR.oauth2.authorize({
+                // Works automatically with the SMART sandbox (no registration needed)
+                clientId: "my_web_app",
+
+                // Required scopes for EHR launch + patient data
+                scope: "launch openid fhirUser patient/*.read",
+
+                // Relative redirect (library appends to current origin)
+                redirectUri: "index.html"
+            });
+        </script>
+    </body>
+</html>
